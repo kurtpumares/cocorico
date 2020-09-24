@@ -4,43 +4,37 @@
 
 # Cocorico
 
-[![Try the demo](https://img.shields.io/badge/try-demo-green.svg)](https://www.cocorico.io/en/demo/)
-[![Build Status](https://secure.travis-ci.org/Cocolabs-SAS/cocorico.svg)](http://travis-ci.org/Cocolabs-SAS/cocorico)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Latest Stable Version](https://poser.pugx.org/cocorico/cocorico/v/stable.svg)](https://packagist.org/packages/cocorico/cocorico)
-
-Cocorico is an open source platform sponsored by [Cocolabs](https://www.cocolabs.com/en/?utm_source=github&utm_medium=cocorico-page&utm_campaign=organic) to create collaborative consumption marketplaces.
-
-A demo is available at [http://demo.cocorico.io](https://www.cocorico.io/en/demo/).
-
 ## Documentation
 
 Documentation is available [here](doc/index.md)
 
-## Contribute
+### Quick Installation Based On Docker
 
-Anyone and everyone is welcome to contribute. Please take a moment to
-review the [guidelines for contributing](CONTRIBUTING.md).
+To start the container in the background
 
-* [Bug reports](CONTRIBUTING.md#bugs)
-* [Feature requests](CONTRIBUTING.md#features)
-* [Pull requests](CONTRIBUTING.md#pull-requests)
+``` bash
+docker run -d --name cocorico -ti -p 80:80 -p 3306:3306 -p 9001:9001 -p 27017:27017  -v `pwd`:/cocorico -v `pwd`/tmp/mysql:/var/lib/mysql -v `pwd`/tmp/mongo:/data/db -e HOST_UID=$UID cocolabs/cocorico
+```
 
-The [ROADMAP](ROADMAP.md) list the planned features.
+To connect to the container
 
-## Changelog
- - Fix similar listings session persisting
+``` bash
+docker exec -it --user cocorico cocorico sh
+```
 
-[CHANGELOG.md](CHANGELOG.md) list the relevant changes done for each release.
+To stop and remove the container
 
-## Community
+``` bash    
+docker kill cocorico && docker rm cocorico
+```
 
-Stay informed on Cocorico developments on [Twitter](https://twitter.com/cocorico_rocks).
+Once the Symfony server is running, enjoy Cocorico at [http://localhost](http://localhost)
+
+Control processes with Supervisor at [http://localhost:9001](http://localhost:9001)
 
 ## License
 
 Cocorico is released under the [MIT license](LICENSE).
-
 
 ## About Us
 
